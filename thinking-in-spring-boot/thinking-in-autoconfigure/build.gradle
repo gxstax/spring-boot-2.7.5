@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id "java-library"
+    id "org.springframework.boot.conventions"
+}
+
+description 'thinking-in-spring-boot-autoconfigure'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    api(project(":spring-boot-project:spring-boot-autoconfigure"))
+}
+
+test {
+    useJUnitPlatform()
+}
