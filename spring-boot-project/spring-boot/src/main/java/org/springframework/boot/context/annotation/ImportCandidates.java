@@ -41,6 +41,7 @@ import org.springframework.util.Assert;
  */
 public final class ImportCandidates implements Iterable<String> {
 
+	/** 自动配置类 */
 	private static final String LOCATION = "META-INF/spring/%s.imports";
 
 	private static final String COMMENT_START = "#";
