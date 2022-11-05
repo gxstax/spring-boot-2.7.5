@@ -1,8 +1,10 @@
 package com.ant;
 
 
+import com.ant.beans.AntBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
@@ -22,6 +24,7 @@ public class Application {
 	}
 
 	@Bean
+	@ConditionalOnClass(AntBean.class)
 	public String demo() {
 		return "this is a String bean named demo";
 	}
