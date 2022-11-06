@@ -42,6 +42,7 @@ import org.springframework.context.annotation.Conditional;
  * @author Stephane Nicoll
  * @since 1.3.0
  */
+// 用于判断某个类型的 Bean 是否只有一个
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

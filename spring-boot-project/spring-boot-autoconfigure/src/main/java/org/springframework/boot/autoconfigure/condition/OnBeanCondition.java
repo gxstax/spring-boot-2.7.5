@@ -163,6 +163,15 @@ class OnBeanCondition extends FilteringSpringBootCondition implements Configurat
 		return ConditionOutcome.match(matchMessage);
 	}
 
+	/**
+	 * <p>
+	 * 查找是否有匹配的 Bean 信息
+	 * </p>
+	 *
+	 * @param context
+	 * @param spec
+	 * @return org.springframework.boot.autoconfigure.condition.OnBeanCondition.MatchResult
+	 */
 	protected final MatchResult getMatchingBeans(ConditionContext context, Spec<?> spec) {
 		ClassLoader classLoader = context.getClassLoader();
 		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
@@ -175,6 +184,7 @@ class OnBeanCondition extends FilteringSpringBootCondition implements Configurat
 			beanFactory = (ConfigurableListableBeanFactory) parent;
 		}
 		MatchResult result = new MatchResult();
+		// 根据 beanName 从 spring 容器中查找适配的 bean 信息
 		Set<String> beansIgnoredByType = getNamesOfBeansIgnoredByType(classLoader, beanFactory, considerHierarchy,
 				spec.getIgnoredTypes(), parameterizedContainers);
 		for (String type : spec.getTypes()) {
@@ -189,8 +199,7 @@ class OnBeanCondition extends FilteringSpringBootCondition implements Configurat
 			}
 			if (typeMatches.isEmpty()) {
 				result.recordUnmatchedType(type);
-			}
-			else {
+			} else {
 				result.recordMatchedType(type, typeMatches);
 			}
 		}
@@ -200,16 +209,14 @@ class OnBeanCondition extends FilteringSpringBootCondition implements Configurat
 			annotationMatches.removeAll(beansIgnoredByType);
 			if (annotationMatches.isEmpty()) {
 				result.recordUnmatchedAnnotation(annotation);
-			}
-			else {
+			} else {
 				result.recordMatchedAnnotation(annotation, annotationMatches);
 			}
 		}
 		for (String beanName : spec.getNames()) {
 			if (!beansIgnoredByType.contains(beanName) && containsBean(beanFactory, beanName, considerHierarchy)) {
 				result.recordMatchedName(beanName);
-			}
-			else {
+			} else {
 				result.recordUnmatchedName(beanName);
 			}
 		}

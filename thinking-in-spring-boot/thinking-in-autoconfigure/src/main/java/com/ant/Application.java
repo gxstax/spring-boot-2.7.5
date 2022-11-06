@@ -20,11 +20,10 @@ import org.springframework.context.annotation.Bean;
 public class Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-		System.out.println(context.getBean("demo"));
+		System.out.println(context.getBean("demo", String.class));
 	}
 
 	@Bean
-	@ConditionalOnClass(AntBean.class)
 	public String demo() {
 		return "this is a String bean named demo";
 	}

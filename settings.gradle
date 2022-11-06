@@ -88,4 +88,6 @@ file("${rootDir}/spring-boot-tests/spring-boot-smoke-tests").eachDirMatch(~/spri
 include 'thinking-in-spring-boot'
 include 'thinking-in-spring-boot:thinking-in-autoconfigure'
 findProject(':thinking-in-spring-boot:thinking-in-autoconfigure')?.name = 'thinking-in-autoconfigure'
+include 'thinking-in-spring-boot:thinking-in-conditional'
+findProject(':thinking-in-spring-boot:thinking-in-conditional')?.name = 'thinking-in-conditional'
 

@@ -2,10 +2,7 @@ package com.ant.configuration;
 
 
 import com.ant.beans.AntBean;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * </P>
  *
  * @author Ant
- * @since 2022/11/06 12:52 上午
+ * @since 2022/11/06 3:17 上午
  **/
 @Configuration
 @ConditionalOnClass(AntBean.class)
@@ -26,13 +23,12 @@ public class ConditionConfiguration {
 		System.out.println("ConditionConfiguration construct....");
 	}
 
-
-	@Bean("sameBean")
+	@Bean
 	public AntBean antBean1() {
 		return new AntBean("bean1");
 	}
 
-	@Bean("sameBean")
+	@Bean
 	public AntBean antBean2() {
 		return new AntBean("bean2");
 	}
