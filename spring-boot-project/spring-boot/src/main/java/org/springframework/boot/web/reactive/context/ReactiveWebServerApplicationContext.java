@@ -64,8 +64,7 @@ public class ReactiveWebServerApplicationContext extends GenericReactiveWebAppli
 	public final void refresh() throws BeansException, IllegalStateException {
 		try {
 			super.refresh();
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			WebServerManager serverManager = this.serverManager;
 			if (serverManager != null) {
 				serverManager.getWebServer().stop();
@@ -78,9 +77,9 @@ public class ReactiveWebServerApplicationContext extends GenericReactiveWebAppli
 	protected void onRefresh() {
 		super.onRefresh();
 		try {
+			// 创建web服务
 			createWebServer();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new ApplicationContextException("Unable to start reactive web server", ex);
 		}
 	}

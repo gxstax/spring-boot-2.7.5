@@ -277,8 +277,7 @@ public class SpringApplication {
 					return Class.forName(stackTraceElement.getClassName());
 				}
 			}
-		}
-		catch (ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			// Swallow and continue
 		}
 		return null;
@@ -305,6 +304,7 @@ public class SpringApplication {
 			context = createApplicationContext();
 			context.setApplicationStartup(this.applicationStartup);
 			prepareContext(bootstrapContext, context, environment, listeners, applicationArguments, printedBanner);
+			// 这里会调用spring 容器的的初始化，也就是 spring 最原始的 refresh() 方法
 			refreshContext(context);
 			afterRefresh(context, applicationArguments);
 			Duration timeTakenToStartup = Duration.ofNanos(System.nanoTime() - startTime);
@@ -731,6 +731,7 @@ public class SpringApplication {
 	 * @param applicationContext the application context to refresh
 	 */
 	protected void refresh(ConfigurableApplicationContext applicationContext) {
+		// 这里调用的方法是 AbstractApplicationContext.refresh() 是不是很熟悉了
 		applicationContext.refresh();
 	}
 

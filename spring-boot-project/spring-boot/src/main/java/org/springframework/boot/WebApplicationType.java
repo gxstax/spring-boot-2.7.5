@@ -60,6 +60,8 @@ public enum WebApplicationType {
 			return WebApplicationType.REACTIVE;
 		}
 		for (String className : SERVLET_INDICATOR_CLASSES) {
+			// 判断 classpath 是否有 Servlet API（如 Tomcat 的 servlet-api.jar）
+			// 如果没有，则不以web服务的方式启动
 			if (!ClassUtils.isPresent(className, null)) {
 				return WebApplicationType.NONE;
 			}
